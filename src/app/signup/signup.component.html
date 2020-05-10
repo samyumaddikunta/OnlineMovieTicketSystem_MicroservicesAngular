@@ -1,0 +1,70 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div class="container">
+
+        <h3>SIGN UP</h3>
+    <form #userForm="ngForm" (ngSubmit)='onSubmit(userForm.value)'>
+        <div class="form-group">
+            <label>SNO: </label>
+            <input required minlength="1" type="number" #SnoRef='ngModel' name="sno" ngModel class="form-control">
+            <div *ngIf='SnoRef.errors && SnoRef.touched' class="alert alert-danger">
+                <div [hidden]='!SnoRef.errors.required'> Provide sno </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            <input required minlength="3" type="text" #NameRef='ngModel' name="name" ngModel class="form-control">
+            <div *ngIf='NameRef.errors
+                        && NameRef.touched' class="alert alert-danger">
+                <div [hidden]='!NameRef.errors.required'> Provide full name </div>
+                <div *ngIf='NameRef.errors.pattern'>Fullname should be minimum of 3 characters length</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>User name: </label>
+            <input required minlength="1" type="text" #userNameRef='ngModel' name="username" ngModel class="form-control">
+            <div *ngIf='userNameRef.errors && userNameRef.touched' class="alert alert-danger">
+                <div [hidden]='!userNameRef.errors.required'> Provide user name </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password: </label>
+            <input required minlength="8" type="text" #PwdRef='ngModel' name="password" ngModel class="form-control">
+            <div *ngIf='PwdRef.errors && PwdRef.touched' class="alert alert-danger">
+                <div [hidden]='!PwdRef.errors.required'> Enter your password </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email ID: </label>
+
+            <input required minlength="5" type="text" #EmaRef='ngModel' name="email" ngModel class="form-control">
+
+            <div *ngIf='EmaRef.errors && EmaRef.touched' class="alert alert-danger">
+
+                <div [hidden]='!EmaRef.errors.required'> Enter valid Email id </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label>Phone Number: </label>
+
+            <input required minlength="10" type="number" #PhnRef='ngModel' name="userPhoneno" ngModel class="form-control">
+
+            <div *ngIf='PhnRef.errors && PhnRef.touched' class="alert alert-danger">
+
+                <div [hidden]='!PhnRef.errors.required'> Enter your phone number </div>
+    </div>
+        </div>
+        <input [disabled]="userForm.invalid" type="submit" value="SIGN UP" class="btn btn-primary">
+
+    </form>
+
+</div>
+<div>
+    <h2>{{message}}</h2>
+</div>

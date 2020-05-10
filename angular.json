@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "micromovieapp"
+    }
+  },
+  "defaultProject": "micromovieapp",
+  "cli": {
+    "analytics": false
+  }
 }
