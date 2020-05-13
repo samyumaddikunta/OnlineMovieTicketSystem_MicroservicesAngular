@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MovieServiceService, Accounts } from '../movie-service.service';
 import { Router } from '@angular/router';
 
@@ -8,8 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-message:string;
-constructor(public movieservice: MovieServiceService,private router: Router) { }
+  unamePattern = "^[a-z0-9_-]{3,15}$";
+  pwdPattern ="(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,14}";
+ mobnumPattern ="^[6-9]\\d{9}$"; 
+  emailPattern ="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
+  //isValidFormSubmitted = null;
+  userForm = this.formBuilder.group({
+    username: ['', [Validators.required, Validators.pattern(this.unamePattern)]],
+    password: ['', [Validators.required, Validators.pattern(this.pwdPattern)]],
+    userPhoneno: ['',[Validators.required, Validators.pattern(this.mobnumPattern)]],
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+  });
+
+
+  message:string;
+  
+constructor(private formBuilder:FormBuilder,public movieservice: MovieServiceService,private router: Router) { }
 
 
   ngOnInit(): void {
